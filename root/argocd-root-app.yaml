@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/ayuspoudel/k8s-addons-argocd-app.git
     targetRevision: main
-    path: apps
+    path: apps/nginx-ingress
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
