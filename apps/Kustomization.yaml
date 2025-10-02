@@ -1,0 +1,3 @@
+resources:
+  - addons/ingress-nginx/application.yaml
+
