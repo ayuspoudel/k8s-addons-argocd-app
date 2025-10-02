@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://kubernetes.github.io/ingress-nginx
     chart: ingress-nginx
-    targetRevision: 4.11.3   
+    targetRevision: 4.11.3
     helm:
       releaseName: ingress-nginx
       values: |
@@ -17,8 +17,10 @@ spec:
             type: LoadBalancer
             annotations:
               service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-            admissionWebhooks:
-              enabled: false  
+          admissionWebhooks:
+            enabled: true
+            patch:
+              enabled: true    # ensures Helm installs patch jobs for CA bundle
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
@@ -26,3 +28,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true          # needed so ArgoCD runs hook jobs like patch
