@@ -1,3 +1,4 @@
 resources:
   - ./nginx-ingress 
   - ./argocd-ingress  
+  - ./metrics-server
